@@ -1,0 +1,24 @@
+{
+  "name": "wheel-ci-cd-seminar-ariaspect",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -p tsconfig.build.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ariaspect/wheel-ci-cd-seminar.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ariaspect/wheel-ci-cd-seminar/issues"
+  },
+  "homepage": "https://github.com/Ariaspect/wheel-ci-cd-seminar#readme",
+  "devDependencies": {
+    "typescript": "^4.9.4"
+  }
+}
