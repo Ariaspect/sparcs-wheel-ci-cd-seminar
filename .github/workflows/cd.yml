@@ -13,13 +13,19 @@ jobs:
         run: |
           echo ${GITHUB_REF#refs/*/}
           echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+      
+      - uses: actions/checkout@v3
+      - name: Get package.json data
+        run: |
+          echo "PACKAGE_JSON=$(jq -c . < package.json)" >> $GITHUB_ENV
     outputs:
       tag: ${{ env.RELEASE_VERSION }}
+      version: ${{ fromJson(env.PACKAGE_JSON).version }}
 
   cd:
     name: Deploy
     needs: setvar
-    if: ${{ needs.setvar.outputs.version }} == ${{ needs.setvar.outputs.tag }}
+    if: needs.setvar.outputs.version == needs.setvar.outputs.tag
     runs-on: ubuntu-latest
 
     steps:
