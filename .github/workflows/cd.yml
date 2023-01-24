@@ -16,6 +16,7 @@ jobs:
       - name: Get package.json version
         run: |
           echo `pwd`
+          echo `ls ../`
     outputs:
       tag: ${{ env.RELEASE_VERSION }}
 
