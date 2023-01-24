@@ -9,16 +9,28 @@ on:
 jobs:
   ci:
     name: Build
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, windows-latest ]
+        version: [ 14.x, 16.x, 18.x ]
+    runs-on: ${{ matrix.os }}
 
     steps:
       - uses: actions/checkout@v3
-      - name: Setup Node
+
+      - name: Setup Node ${{ matrix.version }}
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: ${{ matrix.version }}
           cache: npm
+
       - name: Install npm dependencies
         run: npm ci
+
+      - name: Prettier & lint
+        run: |
+          npm prettier
+          npm lint
+
       - name: Build
         run: npm run build

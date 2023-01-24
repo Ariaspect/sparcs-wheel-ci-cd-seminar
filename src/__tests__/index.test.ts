@@ -1,5 +1,5 @@
-import hello from "..";
+import hello from '..';
 
-if (hello("ariaspect") !== undefined) {
-    throw new Error("hello error");
+if (hello('ariaspect') !== undefined) {
+	throw new Error('hello error');
 }
