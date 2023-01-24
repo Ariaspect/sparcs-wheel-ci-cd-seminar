@@ -9,21 +9,11 @@ jobs:
     name: Set variables
     runs-on: ubuntu-latest
     steps:
-      - name: Get package.json
-        id: package
-        run: |
-          cat ./package.json
-          content=`cat ./package.json`
-          content="${content//'%'/'%25'}"
-          content="${content//$'\n'/'%0A'}"
-          content="${content//$'\r'/'%0D'}"
-          echo "::set-output name=packageJson::$content"
       - name: Get tag version
         run: |
           echo ${GITHUB_REF#refs/*/}
           echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
     outputs:
-      version: ${{ fromJson(steps.package.outputs.packageJson).version }}
       tag: ${{ env.RELEASE_VERSION }}
 
   cd:
