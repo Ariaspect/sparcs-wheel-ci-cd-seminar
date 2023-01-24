@@ -12,7 +12,8 @@ jobs:
       - name: Get package.json
         id: package
         run: |
-          content=`cat package.json`
+          ls -al
+          content=`cat ./package.json`
           content="${content//'%'/'%25'}"
           content="${content//$'\n'/'%0A'}"
           content="${content//$'\r'/'%0D'}"
